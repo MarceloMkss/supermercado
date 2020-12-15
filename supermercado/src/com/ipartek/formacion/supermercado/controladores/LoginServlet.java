@@ -31,7 +31,7 @@ public class LoginServlet extends HttpServlet {
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String mensaje = ""; 
+		
 		
 		String email = request.getParameter("email");
 		String password = request.getParameter("password");
@@ -39,24 +39,17 @@ public class LoginServlet extends HttpServlet {
 		UsuarioDaoTreeMap dao = UsuarioDaoTreeMap.getInstancia();
 		Usuario usuario = dao.obtenerPorEmail(email);
 		
-		try {
-			dao.crear(usuario);
-			 mensaje = "Usuario insertado con exito";
-		} catch (Exception e) {
-			e.printStackTrace();
-			mensaje = "Lo sentimos pero " + usuario.getEmail() +" el nombre del Usuario ya existe";
-			
-		} finally {
-			request.setAttribute("usuario", usuario);
-			request.setAttribute("mensaje", mensaje);
-		}
 		
 		
 		 
 		if(usuario != null && usuario.getPassword().equals(password)) {
-			request.getSession().setAttribute("usuario", usuario);
-			request.getRequestDispatcher("/inicio-controller").forward(request, response);
+			request.getSession().setAttribute("usuario", usuario);			
+			//request.getRequestDispatcher("/admin/index").forward(request, response);
+			response.sendRedirect(request.getContextPath()+ "/admin/index");
 		} else {
+			request.setAttribute("alertaTexto", "el usuario o la contraseña son incorrectos");
+			request.setAttribute("alertaNivel", "danger");
+			
 			request.getRequestDispatcher("/WEB-INF/vistas/login.jsp").forward(request, response);
 		}
 

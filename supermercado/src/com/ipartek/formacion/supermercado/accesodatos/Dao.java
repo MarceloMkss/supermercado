@@ -1,10 +1,10 @@
 package com.ipartek.formacion.supermercado.accesodatos;
 
-public interface Dao<P> { // T = tipo de dato
+public interface Dao<P> { // P = tipo de dato
 
 	Iterable<P> listar();
 
-	P recuperar(Long id);
+	P  obtenerPorId(Long id);
 
 	void crear(P objeto);
 

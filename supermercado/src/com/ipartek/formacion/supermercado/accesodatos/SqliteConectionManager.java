@@ -4,9 +4,9 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-public class ConectionManager {
+public class SqliteConectionManager {
 
-	private static final String PATH = "c:/supermercado/ddbb/producto.db";
+	private static final String PATH = "c://ddbb/producto.db";
 	
 	static public Connection getConnection() throws ClassNotFoundException, SQLException {
 		

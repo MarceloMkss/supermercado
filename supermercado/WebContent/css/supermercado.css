@@ -12,7 +12,7 @@ del:before {
   top: 50%;
   right: -5px;
   border-top: 1px solid;
-  border-color: inherit;
+  border-color: inherit;   
 
   transform:rotate(-15deg);
 }

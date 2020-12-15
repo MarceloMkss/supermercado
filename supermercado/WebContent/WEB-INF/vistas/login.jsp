@@ -10,6 +10,8 @@
 			<input type="email" class="form-control" id="email" name="email">
 		</div>
 	</div>
+	
+	
 	<div class="form-group row">
 		<label for="password" class="col-sm-2 col-form-label">Contraseña</label>
 		<div class="col-sm-10">

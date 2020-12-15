@@ -3,26 +3,68 @@ package com.ipartek.formacion.supermercado.accesodatos;
 import java.math.BigDecimal;
 import java.util.TreeMap;
 
+import org.apache.commons.lang3.SerializationUtils;
+
 import com.ipartek.formacion.supermercado.modelos.Producto;
 
 public class ProductoDaoTreeMap implements Dao<Producto> {
 
+	
+	// me trae todo los datos ordenados por id
 	private static TreeMap<Long, Producto> productos = new TreeMap<>();
 
 	static {
-		productos.put(1L, new Producto(1L, "Beefeater",
+		productos.put(1L, new Producto(1L, "Baileys",
 				"es una crema de whisky elaborada a partir de la unión de deliciosa nata irlandesa, de licor, de whisky irlandés y esencias naturales de cacao.",
 				"img/Baileys.jpg", new BigDecimal("12.95"), 20, "Litro", new BigDecimal("12.95"), 1));
-		productos.put(2L, new Producto(2L, "Beefeater light",
-				"El licor de Hierbas Jagermeister se elabora con 56 ingredientes naturales. Pasa 383 controles de calidad: El sabor de Jägermeister va más allá de la suma de sus componentes, creando un sabor único y singular que combina matices dulces y amargos. ",
+		
+		productos.put(2L, new Producto(2L, "jagemeilter",
+				"El licor de Hierbas Jagermeister se elabora con 56 ingredientes naturales.creando un sabor único y singular que combina matices dulces y amargos.",
 				"img/jagemeilter2.jpg", new BigDecimal("7.90"), null, "Litro", new BigDecimal("18.50"), 1));
 
-		for (Long id = 3L; id <= 12L; id++) {
-			productos.put(id,
-					new Producto(id, "Producto" + id, "Descripción" + id, "http://placeimg.com/640/480/tech?" + id,
-							new BigDecimal(11 * id), id.intValue(), "Unidad" + id, new BigDecimal(10 * id),
-							id.intValue()));
-		}
+		
+		productos.put(3L, new Producto(3L, "Captain Morgan",
+				"El licor de Hierbas Jagermeister se elabora con 56 ingredientes naturales.creando un sabor único y singular que combina matices dulces y amargos.",
+				"img/Captain Morgan.jpg", new BigDecimal("10.90"), 5, "Litro", new BigDecimal("18.50"), 1));
+		
+		productos.put(4L, new Producto(4L, "Absolut",
+				"El licor de Hierbas Jagermeister se elabora con 56 ingredientes naturales.creando un sabor único y singular que combina matices dulces y amargos.",
+				"img/Absolut1.jpg", new BigDecimal("11.80"), 3, "Litro", new BigDecimal("18.50"), 1));
+		
+		productos.put(5L, new Producto(5L, "Jack Daniels",
+				"El licor de Hierbas Jagermeister se elabora con 56 ingredientes naturales.creando un sabor único y singular que combina matices dulces y amargos.",
+				"img/Jack Daniels.jpg", new BigDecimal("7.90"), null, "Litro", new BigDecimal("18.50"), 1));
+		
+		productos.put(6L, new Producto(6L, "Jinro",
+				"El licor de Hierbas Jagermeister se elabora con 56 ingredientes naturales.creando un sabor único y singular que combina matices dulces y amargos.",
+				"img/Jinro.jpg", new BigDecimal("9.59"), null, "Litro", new BigDecimal("18.50"), 1));
+		
+		productos.put(7L, new Producto(7L, "Johnnie Walkie",
+				"El licor de Hierbas Jagermeister se elabora con 56 ingredientes naturales.creando un sabor único y singular que combina matices dulces y amargos.",
+				"img/Johnnie Walke.jpg", new BigDecimal("9.56"), 10, "Litro", new BigDecimal("17.50"), 1));
+		
+		productos.put(8L, new Producto(8L, "Khlibniy.PNG",
+				"El licor de Hierbas Jagermeister se elabora con 56 ingredientes naturales.creando un sabor único y singular que combina matices dulces y amargos.",
+				"img/Khlibniy.PNG", new BigDecimal("7.90"), null, "Litro", new BigDecimal("18.50"), 1));
+		
+		productos.put(9L, new Producto(9L, "McDowell ‘s",
+				"El licor de Hierbas Jagermeister se elabora con 56 ingredientes naturales.creando un sabor único y singular que combina matices dulces y amargos.",
+				"img/McDowell ‘s.jpg", new BigDecimal("7.90"), 8, "Litro", new BigDecimal("18.50"), 1));
+		
+		productos.put(10L, new Producto(10L, "Pirassunga 51.jpg",
+				"El licor de Hierbas Jagermeister se elabora con 56 ingredientes naturales.creando un sabor único y singular que combina matices dulces y amargos.",
+				"img/Pirassunga 51.jpg", new BigDecimal("7.90"), null, "Litro", new BigDecimal("18.50"), 1));
+		
+		productos.put(11L, new Producto(11L, "Red Star Er Guo",
+				"El licor de Hierbas Jagermeister se elabora con 56 ingredientes naturales.creando un sabor único y singular que combina matices dulces y amargos.",
+				"img/Red Star Er Guo.PNG", new BigDecimal("7.90"), null, "Litro", new BigDecimal("18.50"), 1));
+		
+				
+		productos.put(12L, new Producto(12L, "Smirnoff",
+				"El licor de Hierbas Jagermeister se elabora con 56 ingredientes naturales.creando un sabor único y singular que combina matices dulces y amargos.",
+				"img/Smirnoff.jpg", new BigDecimal("7.90"), null, "Litro", new BigDecimal("18.50"), 1));
+		
+	
 	}
 
 	// SINGLETON
@@ -56,9 +98,8 @@ public class ProductoDaoTreeMap implements Dao<Producto> {
 	}
 
 	@Override
-	public Producto recuperar(Long id) {
-
-		return productos.get(id);
+	public Producto obtenerPorId(Long id) {
+		return SerializationUtils.clone(productos.get(id));
 	}
 
 	@Override

@@ -16,17 +16,19 @@ import com.ipartek.formacion.supermercado.accesodatos.Dao;
 import com.ipartek.formacion.supermercado.accesodatos.ProductoDaoTreeMap;
 import com.ipartek.formacion.supermercado.modelos.Producto;
 
-@WebServlet("/inicio-controller")
-public class InicioController extends HttpServlet {
+@WebServlet("/pagina-principal")
+public class PaginaPrincipalController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
+		
+		// llamo la instacia de ProductoDaoTreeMap, que contiene mi metodo Iterable<Producto> listar()
 		Dao<Producto> dao = ProductoDaoTreeMap.getInstancia();
 		Iterable<Producto> productos = dao.listar();
 		request.setAttribute("productos", productos);
-		request.getRequestDispatcher("/WEB-INF/vistas/index.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/vistas/paginaPrincipal.jsp").forward(request, response);
 
 	}
 

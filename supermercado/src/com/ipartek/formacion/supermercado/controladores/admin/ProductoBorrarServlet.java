@@ -1,4 +1,4 @@
-package com.ipartek.formacion.supermercado.controladores;
+package com.ipartek.formacion.supermercado.controladores.admin;
 
 import java.io.IOException;
 
@@ -13,28 +13,29 @@ import com.ipartek.formacion.supermercado.accesodatos.ProductoDaoTreeMap;
 import com.ipartek.formacion.supermercado.modelos.Producto;
 
 /**
- * Servlet implementation class PerroDetalleController
+ * Servlet implementation class ProductoBorrarServlet
  */
-@WebServlet("/producto-detalle")
-public class ProductoDetalleController extends HttpServlet {
-	
+@WebServlet("/admin/borrar")
+public class ProductoBorrarServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	
        
   
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+	
+        String id = request.getParameter("id");
 		
 		Dao<Producto> dao = ProductoDaoTreeMap.getInstancia();
-		Iterable<Producto> productos = dao.listar();
 		
-			
-		request.setAttribute("productos", productos);	
-		request.getRequestDispatcher("/WEB-INF/vistas/tablaProducto.jsp").forward(request, response);
+		dao.eliminar(Long.parseLong(id));
+		
+		request.setAttribute("alertaTexto", "Borrado efectuado correctamente");
+		request.setAttribute("alertaNivel", "success");
+		
+		request.getRequestDispatcher("/admin/index").forward(request, response);
 		
 	}
 
-	
+
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		doGet(request, response);

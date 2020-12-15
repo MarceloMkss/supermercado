@@ -1,4 +1,4 @@
-package com.ipartek.formacion.supermercado.controladores;
+package com.ipartek.formacion.supermercado.controladores.admin;
 
 import java.io.IOException;
 
@@ -8,29 +8,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.ipartek.formacion.supermercado.accesodatos.Dao;
 import com.ipartek.formacion.supermercado.accesodatos.ProductoDaoTreeMap;
-import com.ipartek.formacion.supermercado.modelos.Producto;
 
 /**
- * Servlet implementation class PerroDetalleController
+ * Servlet implementation class IndexServlet
  */
-@WebServlet("/producto-detalle")
-public class ProductoDetalleController extends HttpServlet {
-	
+@WebServlet("/admin/index")
+public class IndexServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	
        
   
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		
-		Dao<Producto> dao = ProductoDaoTreeMap.getInstancia();
-		Iterable<Producto> productos = dao.listar();
-		
-			
-		request.setAttribute("productos", productos);	
-		request.getRequestDispatcher("/WEB-INF/vistas/tablaProducto.jsp").forward(request, response);
+		request.setAttribute("productos", ProductoDaoTreeMap.getInstancia().listar());
+		request.getRequestDispatcher("/WEB-INF/vistas/admin/index.jsp").forward(request, response);
 		
 	}
 
