@@ -28,7 +28,7 @@
 	       
 		<nav class="navbar navbar-expand-lg navbar-dark " style="background-color: #045169;">
 		 <div class="logo">
-                <img src="img/logo.PNG " width="50" alt="logo Supermercado">
+                <img src="productimgs/logo.PNG " width="50" alt="logo Supermercado">
                 
             </div>
 			<a class="navbar-brand text-align-right"  href="pagina-principal">Supermercado</a>

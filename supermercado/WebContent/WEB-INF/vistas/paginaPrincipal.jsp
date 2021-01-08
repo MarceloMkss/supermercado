@@ -12,7 +12,7 @@
 						<p
 							class="bg-danger text-white position-absolute px-2 rounded-pill">-${producto.descuento}%</p>
 					</c:if>
-					<img src="img/${producto.urlImagen}" class="card-img-top" alt="">
+					<img src="productimgs/${producto.urlImagen}" class="card-img-top" alt="">
 					<%-- <c:if test="${producto.descuento != null}">
 					<div class="card-header">${producto.descuento != null ? ''.concat(producto.descuento).concat('% descuento') : ''}</div>
 				</c:if> --%>

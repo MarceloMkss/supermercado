@@ -2,15 +2,18 @@ package com.ipartek.formacion.supermercado.controladores.admin;
 
 
 
+import java.io.File;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
 
 import com.ipartek.formacion.supermercado.accesodatos.Dao;
 import com.ipartek.formacion.supermercado.controladores.Configuracion;
@@ -20,12 +23,17 @@ import com.ipartek.formacion.supermercado.modelos.Producto;
  * Servlet implementation class ProductoServlet
  */
 @WebServlet("/admin/producto")
+/*para guardar imagenes*/
+@MultipartConfig(fileSizeThreshold = 1024 * 1024,
+maxFileSize = 1024 * 1024 * 5, 
+maxRequestSize = 1024 * 1024 * 5 * 5)
+
 public class ProductoServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	
 	
-	// para cargar imagenes
+	// para cargar imagenes con unas extensiones concretas
 	/*private String pathFileString = "C:\\Users\\Marce\\git\\supermercado\\supermercado\\WebContent\\img";
     private File uploads = new File(pathFileString);
 	private String [] extensioneStrings = {".ico",".png",".jpg",".jpeg"};*/
@@ -33,6 +41,8 @@ public class ProductoServlet extends HttpServlet {
 	
        
 	private static final Logger LOGGER = Logger.getLogger(ProductoServlet.class.getName());
+	
+	private static final String UPLOAD_DIRECTORY = "productimgs";
     
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
@@ -67,19 +77,36 @@ public class ProductoServlet extends HttpServlet {
 		// Cambiar codificación de entrada de datos de formulario de Windows-1252 a UTF8
 
 				request.setCharacterEncoding("utf-8");
+				
+				String uploadPath = getServletContext().getRealPath("") + File.separator + UPLOAD_DIRECTORY;
+				File uploadDir = new File(uploadPath);
+				if (!uploadDir.exists()) uploadDir.mkdir(); // aqui si no existe el diretorio, si crea uno
 
 				// 1. Recoger información de la petición
 
 				String id = request.getParameter("id");
 				String nombre = request.getParameter("nombre");
 				String descripcion = request.getParameter("descripcion");
-				String urlImagen = request.getParameter("imagen");				
+				String urlImagen = null; // asi estva antes ---> request.getParameter("imagen");				
 				String precio = request.getParameter("precio");
 				String descuento = request.getParameter("descuento");				
 				String unidadMedida = request.getParameter("unidad-medida");
 				String precioUnidadMedida = request.getParameter("precio-unidad-medida");
 				String cantidad = request.getParameter("cantidad");
 				String total= request.getParameter("total");
+				
+				String nombreFichero = null;
+				
+				for (Part part : request.getParts()) {
+				    nombreFichero = part.getSubmittedFileName();
+				    
+				    if(nombreFichero != null) {
+					    LOGGER.info(nombreFichero);
+					    part.write(uploadPath + File.separator + nombreFichero);
+					    
+					    urlImagen = nombreFichero;
+				    }
+				}
 				
 
 				// 2. Poner información dentro de un modelo

@@ -2,8 +2,8 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/vistas/includes/cabecera.jsp"%>
 
-<div class="table-responsive">
-	<table class="table table-striped table-bordered table-hover table-sm">
+<div class="table-responsive" >
+	<table class="table table-striped table-bordered table-hover table-sm" >
 		<caption>Listado de productos</caption>
 		<thead class="thead-dark">		
 	
@@ -26,7 +26,7 @@
 					<th scope="row">${producto.id}</th>
 					<td>${producto.nombre}</td>
 					<td>${producto.descripcion}</td>
-					<td><img src="img/${producto.urlImagen}" alt="" style="height: 3em" /></td>					
+					<td><img src="productimgs/${producto.urlImagen}" alt="" style="height: 3em" /></td>					
 					<td><fmt:formatNumber type="currency" value="${producto.precio}" /></td>
 					<td><fmt:formatNumber type="percent" value="${producto.descuento / 100}" /></td>
 					<td>${producto.unidadMedida}</td>

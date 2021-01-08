@@ -10,7 +10,7 @@
 	<h1>Edición de producto</h1>
 	<br>
 
-		<form action="" method="post" class="needs-validation" novalidate>
+		<form action="" method="post" class="needs-validation" novalidate enctype="multipart/form-data">
 			<%--<input type="hidden" name="id" value="" />--%>
 
 			<div class="form-group row">
@@ -32,7 +32,7 @@
 					<input type="text"
 						class="form-control ${producto.errorNombre != null ? 'is-invalid' : '' }"
 						id="nombre" name="nombre" value="${producto.nombre}" required
-						minlength="3" pattern="\p{Lu}\p{Ll}{2}[\p{Ll} ]*"
+						minlength="3" pattern="\p{Lu}\p{Ll}{2}[ \p{Ll} ]*"
 						placeholder="Debe introducir un nombre con solo letras y mayúscula la primera. Mínimo tres caracteres.">
 					<div class="valid-feedback">Nombre correcto</div>
 					<div class="invalid-feedback">${producto.errorNombre != null ? producto.errorNombre : 'Debe introducir un nombre con
