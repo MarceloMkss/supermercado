@@ -1,18 +1,61 @@
 @charset "UTF-8";
 
 del {
-  position: relative;
-  text-decoration: none;
+	position: relative;
+	text-decoration: none;
 }
 
 del:before {
-  position: absolute;
-  content: "";
-  left: -5px;
-  top: 50%;
-  right: -5px;
-  border-top: 1px solid;
-  border-color: inherit;   
+	position: absolute;
+	content: "";
+	left: -5px;
+	top: 50%;
+	right: -5px;
+	border-top: 1px solid;
+	border-color: inherit;
+	transform: rotate(-15deg);
+}
 
-  transform:rotate(-15deg);
+.contenedor-cliente {
+	padding: 1px;
+	margin: 50px;
+	background-color: #045169;
+	color: white;
+	text-align: center;
+}
+
+.form-control {
+	width: 98%;
+}
+
+.h1-cliente {
+	font-size: 1.5rem;
+	margin: 10px;
+}
+
+.contenedor-producto {
+	padding: 1px;
+	margin: 50px;
+	background-color: #045169;
+	color: white;
+	text-align: center;
+}
+
+.contenedor-carrito {
+	background-color: #097ca0;
+	color: white;
+	padding: 1px;
+	margin: 50px;
+}
+
+.contenedor-carrito thead, tfoot {
+	color: white;
+}
+
+.contenedor-login {
+	background-color: #097ca0;
+	color: white;
+	text-align: center;
+	padding: 17px;
+	margin: 14px;
 }

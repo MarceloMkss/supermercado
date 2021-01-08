@@ -8,7 +8,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.ipartek.formacion.supermercado.accesodatos.ProductoDaoTreeMap;
+import com.ipartek.formacion.supermercado.accesodatos.ProductoDaoMySql;
+
 
 /**
  * Servlet implementation class IndexServlet
@@ -20,7 +21,7 @@ public class IndexServlet extends HttpServlet {
   
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		request.setAttribute("productos", ProductoDaoTreeMap.getInstancia().listar());
+		request.setAttribute("productos", ProductoDaoMySql.getInstancia().listar());
 		request.getRequestDispatcher("/WEB-INF/vistas/admin/index.jsp").forward(request, response);
 		
 	}

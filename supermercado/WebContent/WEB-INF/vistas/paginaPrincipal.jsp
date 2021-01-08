@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/vistas/includes/cabecera.jsp"%>
 
-<form action="agregartodocarrito" method="get">
+<form action="agregartodocarrito" method="get" >
 	<button class="btn btn-primary btn-block mb-3">Agregar todos las cantidades a carrito</button>
 	<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5">
 		<c:forEach items="${productos}" var="producto">
@@ -12,7 +12,7 @@
 						<p
 							class="bg-danger text-white position-absolute px-2 rounded-pill">-${producto.descuento}%</p>
 					</c:if>
-					<img src="${producto.urlImagen}" class="card-img-top" alt="">
+					<img src="img/${producto.urlImagen}" class="card-img-top" alt="">
 					<%-- <c:if test="${producto.descuento != null}">
 					<div class="card-header">${producto.descuento != null ? ''.concat(producto.descuento).concat('% descuento') : ''}</div>
 				</c:if> --%>

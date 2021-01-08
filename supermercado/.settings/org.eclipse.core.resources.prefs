@@ -1,2 +1,5 @@
 eclipse.preferences.version=1
+encoding//src/com/ipartek/formacion/supermercado/accesodatos/ClienteDaoMySql.java=UTF-8
+encoding//src/com/ipartek/formacion/supermercado/accesodatos/ProductoDaoMySql.java=UTF-8
+encoding//src/com/ipartek/formacion/supermercado/accesodatos/UsuarioDaoMySql.java=UTF-8
 encoding//src/com/ipartek/formacion/supermercado/accesodatos/UsuarioDaoTreeMap.java=UTF-8

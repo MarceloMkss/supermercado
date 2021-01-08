@@ -1,6 +1,7 @@
 package com.ipartek.formacion.supermercado.controladores;
 
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.util.Enumeration;
 import java.util.LinkedHashMap;
 
@@ -11,7 +12,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.ipartek.formacion.supermercado.accesodatos.Dao;
-import com.ipartek.formacion.supermercado.accesodatos.ProductoDaoTreeMap;
+import com.ipartek.formacion.supermercado.accesodatos.ProductoDaoMySql;
+
 import com.ipartek.formacion.supermercado.modelos.Producto;
 
 /**
@@ -29,7 +31,7 @@ public class AgregarTodoCarritoServlet extends HttpServlet {
 
 		System.out.println("doGet AgregarTodoCarritoServlet");
 		
-		Dao<Producto> dao = ProductoDaoTreeMap.getInstancia();
+		Dao<Producto> dao = ProductoDaoMySql.getInstancia();
 		
 		LinkedHashMap<Long, Producto> carrito = new LinkedHashMap<>();
 		
@@ -42,6 +44,7 @@ public class AgregarTodoCarritoServlet extends HttpServlet {
 		Integer cantidad;
 
 		Producto producto;
+		BigDecimal totalCompra = BigDecimal.ZERO;
 		
 		while (ids.hasMoreElements()) {
 			sId = ids.nextElement();
@@ -58,6 +61,8 @@ public class AgregarTodoCarritoServlet extends HttpServlet {
 				
 				carrito.put(id, producto);
 				
+				totalCompra = totalCompra.add(producto.getTotal());
+				
 				System.out.println(producto);
 				
 //				out.println(producto);
@@ -65,6 +70,7 @@ public class AgregarTodoCarritoServlet extends HttpServlet {
 		}
 		
 		request.getSession().setAttribute("carrito", carrito);
+		request.getSession().setAttribute("totalCompra", totalCompra);
 		
 		response.sendRedirect(request.getContextPath() + "/carrito");
 	

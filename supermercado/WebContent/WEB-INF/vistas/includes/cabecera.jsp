@@ -40,6 +40,7 @@
 			</button>
 
 			<div class="collapse navbar-collapse" id="menuHamburguesa">
+				
 				<ul class="navbar-nav mr-auto">
 				
 				   <!-- Pagina de inicio -->
@@ -53,14 +54,12 @@
 						<li class="nav-item"><a class="nav-link" href="admin/index">Mantenimiento
 								Productos</a></li>
 					</c:if>
-					
-					
-					
-					
-					
+			
+										
 				</ul>
 				
 				<ul class="navbar-nav">
+				<li class="nav-item"><a class="nav-link" href="admin/cliente">Registro de Cliente</a></li>
 					<li class="nav-item"><a class="nav-link" href="carrito">Ver carrito</a>
 					<c:choose>
 						<c:when test="${sessionScope.usuario == null}">
@@ -70,6 +69,7 @@
 						<c:otherwise>
 							<li class="nav-item"><a class="navbar-text">${sessionScope.usuario.email}</a>
 							</li>
+							
 							<li class="nav-item"><a class="nav-link" href="logout">Cerrar sesión</a>
 							</li>
 						</c:otherwise>

@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.ipartek.formacion.supermercado.accesodatos.Dao;
-import com.ipartek.formacion.supermercado.accesodatos.ProductoDaoTreeMap;
+import com.ipartek.formacion.supermercado.accesodatos.ProductoDaoMySql;
 import com.ipartek.formacion.supermercado.modelos.Producto;
 
 /**
@@ -24,7 +24,7 @@ public class ProductoBorrarServlet extends HttpServlet {
 	
         String id = request.getParameter("id");
 		
-		Dao<Producto> dao = ProductoDaoTreeMap.getInstancia();
+		Dao<Producto> dao = ProductoDaoMySql.getInstancia();
 		
 		dao.eliminar(Long.parseLong(id));
 		

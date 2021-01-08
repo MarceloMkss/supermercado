@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.ipartek.formacion.supermercado.accesodatos.Dao;
-import com.ipartek.formacion.supermercado.accesodatos.ProductoDaoTreeMap;
+import com.ipartek.formacion.supermercado.controladores.Configuracion;
 import com.ipartek.formacion.supermercado.modelos.Producto;
 
 /**
@@ -22,6 +22,15 @@ import com.ipartek.formacion.supermercado.modelos.Producto;
 @WebServlet("/admin/producto")
 public class ProductoServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	
+	
+	
+	// para cargar imagenes
+	/*private String pathFileString = "C:\\Users\\Marce\\git\\supermercado\\supermercado\\WebContent\\img";
+    private File uploads = new File(pathFileString);
+	private String [] extensioneStrings = {".ico",".png",".jpg",".jpeg"};*/
+
+	
        
 	private static final Logger LOGGER = Logger.getLogger(ProductoServlet.class.getName());
     
@@ -37,7 +46,7 @@ public class ProductoServlet extends HttpServlet {
 				
 				
 				if (id != null) {
-					Dao<Producto> dao = ProductoDaoTreeMap.getInstancia();
+					Dao<Producto> dao = Configuracion.daoProductos;
 
 					Producto producto = dao.obtenerPorId(Long.parseLong(id));
 
@@ -63,18 +72,20 @@ public class ProductoServlet extends HttpServlet {
 
 				String id = request.getParameter("id");
 				String nombre = request.getParameter("nombre");
-				String urlImagen = request.getParameter("imagen");
 				String descripcion = request.getParameter("descripcion");
+				String urlImagen = request.getParameter("imagen");				
 				String precio = request.getParameter("precio");
-				String cantidad = request.getParameter("cantidad");
+				String descuento = request.getParameter("descuento");				
 				String unidadMedida = request.getParameter("unidad-medida");
 				String precioUnidadMedida = request.getParameter("precio-unidad-medida");
-				String descuento = request.getParameter("descuento");
+				String cantidad = request.getParameter("cantidad");
+				String total= request.getParameter("total");
+				
 
 				// 2. Poner información dentro de un modelo
 
 				Producto producto = new Producto(id, nombre, descripcion, urlImagen, precio, descuento, unidadMedida,
-						precioUnidadMedida, cantidad);
+						precioUnidadMedida, cantidad,total);
 
 				
 				LOGGER.log(Level.INFO, producto.toString());
@@ -91,7 +102,7 @@ public class ProductoServlet extends HttpServlet {
 					return;
 				}
 
-				Dao<Producto> dao = ProductoDaoTreeMap.getInstancia();
+				Dao<Producto> dao = Configuracion.daoProductos;
 
 				String mensaje;
 

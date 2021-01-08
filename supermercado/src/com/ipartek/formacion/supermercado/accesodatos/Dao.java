@@ -2,7 +2,7 @@ package com.ipartek.formacion.supermercado.accesodatos;
 
 public interface Dao<P> { // P = tipo de dato
 
-	Iterable<P> listar();
+	Iterable<P> listar();		
 
 	P  obtenerPorId(Long id);
 
