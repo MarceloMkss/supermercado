@@ -47,7 +47,7 @@ public class LoginServlet extends HttpServlet {
 		if(usuario != null && usuario.getPassword().equals(password)) {
 			request.getSession().setAttribute("usuario", usuario);			
 			//request.getRequestDispatcher("/admin/index").forward(request, response);
-			response.sendRedirect(request.getContextPath()+ "/admin/index");
+			response.sendRedirect(request.getContextPath()+ "/admin/lista-Producto");
 		} else {
 			request.setAttribute("alertaTexto", "el usuario o la contraseña son incorrectos");
 			request.setAttribute("alertaNivel", "danger");

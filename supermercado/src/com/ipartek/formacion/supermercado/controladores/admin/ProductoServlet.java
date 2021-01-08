@@ -153,7 +153,7 @@ public class ProductoServlet extends HttpServlet {
 
 				// 5. Redirigir a otra vista
 
-				request.getRequestDispatcher("/admin/index").forward(request, response);
+				request.getRequestDispatcher("/admin/lista-Producto").forward(request, response);
 	}
 
 }

@@ -14,15 +14,15 @@ import com.ipartek.formacion.supermercado.accesodatos.ProductoDaoMySql;
 /**
  * Servlet implementation class IndexServlet
  */
-@WebServlet("/admin/index")
-public class IndexServlet extends HttpServlet {
+@WebServlet("/admin/lista-Producto")
+public class ListaProductoServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
   
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		request.setAttribute("productos", ProductoDaoMySql.getInstancia().listar());
-		request.getRequestDispatcher("/WEB-INF/vistas/admin/index.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/vistas/admin/listaProducto.jsp").forward(request, response);
 		
 	}
 

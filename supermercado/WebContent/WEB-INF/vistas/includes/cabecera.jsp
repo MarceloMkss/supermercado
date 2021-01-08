@@ -51,7 +51,7 @@
 							
 							<!-- si el usuario es distinto de null, puede aceder al mantenimiento -->								
 					<c:if test="${sessionScope.usuario != null}">
-						<li class="nav-item"><a class="nav-link" href="admin/index">Mantenimiento
+						<li class="nav-item"><a class="nav-link" href="admin/lista-Producto">Mantenimiento
 								Productos</a></li>
 					</c:if>
 			
