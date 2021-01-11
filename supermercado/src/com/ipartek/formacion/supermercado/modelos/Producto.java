@@ -3,6 +3,7 @@ package com.ipartek.formacion.supermercado.modelos;
 import java.io.Serializable;
 import java.math.BigDecimal;
 
+
 public class Producto implements Serializable {
 	
 	/**
@@ -21,6 +22,8 @@ public class Producto implements Serializable {
 	private Integer cantidad;
 	private BigDecimal total;
 
+	private Departamento departamento;
+	
 	private boolean correcto = true;
 
 	private String errorId;
@@ -214,6 +217,16 @@ public class Producto implements Serializable {
 
 	public void setTotal(BigDecimal total) {
 		this.total = total;
+	}
+
+	
+
+	public Departamento getDepartamento() {
+		return departamento;
+	}
+
+	public void setDepartamento(Departamento departamento) {
+		this.departamento = departamento;
 	}
 
 	public BigDecimal getPrecioConDescuento() {

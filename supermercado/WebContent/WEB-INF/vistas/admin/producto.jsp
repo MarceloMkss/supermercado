@@ -25,6 +25,25 @@
 					<div class="invalid-feedback">${producto.errorId}</div>
 				</div>
 			</div>
+			
+			<!-- DEPARTAMENTO -->
+			<div class="form-group row">
+
+				<label for="departamento" class="col-md-4 col-lg-3 col-form-label">Departamento</label>
+				<div class="col">
+					<select class="form-control" id="departamento" name="departamento">
+					<option value="0">Introduzca el Departamento</option>
+					
+					<c:forEach items="${departamentos}" var="departamento">
+					<option value="${departamento.id }">${departamento.nombre}</option>
+					
+					</c:forEach>
+					
+					
+					</select>						
+					
+				</div>
+			</div>	
 
 			<div class="form-group row">
 				<label for="nombre" class="col-md-4 col-lg-3  col-form-label">Nombre</label>

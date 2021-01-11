@@ -1,15 +1,27 @@
 package com.ipartek.formacion.supermercado.accesodatos;
 
+
+
 public interface Dao<P> { // P = tipo de dato
 
-	Iterable<P> listar();		
+	default Iterable<P> listar(){
+		throw new AccesoDatosException("MÉTODO NO IMPLEMENTADO");
+	}	
 
-	P  obtenerPorId(Long id);
+	default P  obtenerPorId(Long id) {
+		throw new AccesoDatosException("MÉTODO NO IMPLEMENTADO");
+	}
 
-	void crear(P objeto);
+	default void crear(P objeto) {
+		throw new AccesoDatosException("MÉTODO NO IMPLEMENTADO");
+	}
 
-	void modificar(P objeto);
+	default void modificar(P objeto) {
+		throw new AccesoDatosException("MÉTODO NO IMPLEMENTADO");
+	}
 
-	void eliminar(Long id);
+	default void eliminar(Long id) {
+		throw new AccesoDatosException("MÉTODO NO IMPLEMENTADO");
+	}
 	
 }

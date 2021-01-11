@@ -16,7 +16,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 
 import com.ipartek.formacion.supermercado.accesodatos.Dao;
+import com.ipartek.formacion.supermercado.accesodatos.DepartamentoDaoMySql;
 import com.ipartek.formacion.supermercado.controladores.Configuracion;
+import com.ipartek.formacion.supermercado.modelos.Departamento;
 import com.ipartek.formacion.supermercado.modelos.Producto;
 
 /**
@@ -61,9 +63,13 @@ public class ProductoServlet extends HttpServlet {
 					Producto producto = dao.obtenerPorId(Long.parseLong(id));
 
 					// 4. Generar modelo para la vista
+										
 
 					request.setAttribute("producto", producto);
 				}
+				
+				Iterable<Departamento> departamentos = DepartamentoDaoMySql.getInstancia().listar();
+				request.setAttribute("departamentos", departamentos);
 
 				// 5. Redirigir a otra vista
 				request.getRequestDispatcher("/WEB-INF/vistas/admin/producto.jsp").forward(request, response);
