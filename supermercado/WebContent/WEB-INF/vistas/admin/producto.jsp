@@ -6,11 +6,12 @@
 <div class="container-fluid">
 
 	<div class="contenedor-producto">
-	
-	<h1>Edición de producto</h1>
-	<br>
 
-		<form action="" method="post" class="needs-validation" novalidate enctype="multipart/form-data">
+		<h1>Edición de producto</h1>
+		<br>
+
+		<form action="" method="post" class="needs-validation" novalidate
+			enctype="multipart/form-data">
 			<%--<input type="hidden" name="id" value="" />--%>
 
 			<div class="form-group row">
@@ -25,25 +26,25 @@
 					<div class="invalid-feedback">${producto.errorId}</div>
 				</div>
 			</div>
-			
+
 			<!-- DEPARTAMENTO -->
 			<div class="form-group row">
-
-				<label for="departamento" class="col-md-4 col-lg-3 col-form-label">Departamento</label>
+				<label for="departamento" class="col-md-4 col-lg-3 col-form-label" >Departamento</label>
 				<div class="col">
-					<select class="form-control" id="departamento" name="departamento">
-					<option value="0">Introduzca el Departamento</option>
-					
-					<c:forEach items="${departamentos}" var="departamento">
-					<option value="${departamento.id }">${departamento.nombre}</option>
-					
-					</c:forEach>
-					
-					
-					</select>						
-					
+					<select
+						class="form-control ${producto.errorDepartamento != null ? 'is-invalid' : '' }"
+						id="departamento" name="departamento">
+						<option value="0">Introduzca el departamento</option>
+
+						<c:forEach items="${departamentos}" var="departamento">
+							<option value="${departamento.id}"
+								${departamento.id == producto.departamento.id ? 'selected' : ''}>${departamento.nombre}</option>
+						</c:forEach>
+					</select>
+					<div class="valid-feedback">Departamento correcto</div>
+					<div class="invalid-feedback">${producto.errorDepartamento != null ? producto.errorDepartamento : 'Es obligatorio introducir el departamento'}</div>
 				</div>
-			</div>	
+			</div>
 
 			<div class="form-group row">
 				<label for="nombre" class="col-md-4 col-lg-3  col-form-label">Nombre</label>
@@ -71,6 +72,8 @@
 					<div class="invalid-feedback"></div>
 				</div>
 			</div>
+			
+			<input type="hidden" name="imagenAnterior" value="${producto.urlImagen}" />
 
 			<%-- 
 	<div class="form-group row">

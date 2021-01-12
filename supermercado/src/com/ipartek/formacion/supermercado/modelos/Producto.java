@@ -36,6 +36,7 @@ public class Producto implements Serializable {
 	private String errorPrecioUnidadMedida;
 	private String errorCantidad;
 	private String errorTotal;
+	private String errorDepartamento;
 
 	public Producto(String id, String nombre, String descripcion, String urlImagen, String precio, String descuento,
 			String unidadMedida, String precioUnidadMedida, String cantidad,String total) {
@@ -151,6 +152,9 @@ public class Producto implements Serializable {
 	}
 
 	public void setUrlImagen(String urlImagen) {
+		if(urlImagen == null) {
+			urlImagen = "";
+		}
 		this.urlImagen = urlImagen;
 	}
 
@@ -226,6 +230,9 @@ public class Producto implements Serializable {
 	}
 
 	public void setDepartamento(Departamento departamento) {
+		if(departamento == null || departamento.getId() == null || departamento.getId() == 0L) {
+			setErrorDepartamento("El departamento es obligatorio");
+		}
 		this.departamento = departamento;
 	}
 
@@ -338,6 +345,15 @@ public class Producto implements Serializable {
 	public void setErrorTotal(String errorTotal) {
 		correcto = false;
 		this.errorTotal = errorTotal;
+	}
+
+	public String getErrorDepartamento() {
+		return errorDepartamento;
+	}
+
+	public void setErrorDepartamento(String errorDepartamento) {
+		correcto = false;
+		this.errorDepartamento = errorDepartamento;
 	}
 
 	@Override
@@ -487,11 +503,12 @@ public class Producto implements Serializable {
 		return "Producto [id=" + id + ", nombre=" + nombre + ", descripcion=" + descripcion + ", urlImagen=" + urlImagen
 				+ ", precio=" + precio + ", descuento=" + descuento + ", unidadMedida=" + unidadMedida
 				+ ", precioUnidadMedida=" + precioUnidadMedida + ", cantidad=" + cantidad + ", total=" + total
-				+ ", correcto=" + correcto + ", errorId=" + errorId + ", errorNombre=" + errorNombre
-				+ ", errorDescripcion=" + errorDescripcion + ", errorUrlImagen=" + errorUrlImagen + ", errorPrecio="
-				+ errorPrecio + ", errorDescuento=" + errorDescuento + ", errorUnidadMedida=" + errorUnidadMedida
-				+ ", errorPrecioUnidadMedida=" + errorPrecioUnidadMedida + ", errorCantidad=" + errorCantidad
-				+ ", errorTotal=" + errorTotal + "]";
+				+ ", departamento=" + departamento + ", correcto=" + correcto + ", errorId=" + errorId
+				+ ", errorNombre=" + errorNombre + ", errorDescripcion=" + errorDescripcion + ", errorUrlImagen="
+				+ errorUrlImagen + ", errorPrecio=" + errorPrecio + ", errorDescuento=" + errorDescuento
+				+ ", errorUnidadMedida=" + errorUnidadMedida + ", errorPrecioUnidadMedida=" + errorPrecioUnidadMedida
+				+ ", errorCantidad=" + errorCantidad + ", errorTotal=" + errorTotal + ", errorDepartamento="
+				+ errorDepartamento + "]";
 	}
 
 	
