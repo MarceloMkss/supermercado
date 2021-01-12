@@ -16,7 +16,7 @@
 
 			<div class="form-group row">
 
-				<label for="id" class="col-md-4 col-lg-3 col-form-label">Id</label>
+				<label for="id" class="col-md-4 col-lg-3 col-form-label">Id:</label>
 				<div class="col">
 					<input type="number"
 						class="form-control ${producto.errorId != null ? 'is-invalid' : '' }"
@@ -29,7 +29,7 @@
 
 			<!-- DEPARTAMENTO -->
 			<div class="form-group row">
-				<label for="departamento" class="col-md-4 col-lg-3 col-form-label" >Departamento</label>
+				<label for="departamento" class="col-md-4 col-lg-3 col-form-label" >Departamento:</label>
 				<div class="col">
 					<select
 						class="form-control ${producto.errorDepartamento != null ? 'is-invalid' : '' }"
@@ -47,7 +47,7 @@
 			</div>
 
 			<div class="form-group row">
-				<label for="nombre" class="col-md-4 col-lg-3  col-form-label">Nombre</label>
+				<label for="nombre" class="col-md-4 col-lg-3  col-form-label">Nombre:</label>
 				<div class="col">
 					<input type="text"
 						class="form-control ${producto.errorNombre != null ? 'is-invalid' : '' }"
@@ -61,12 +61,13 @@
 			</div>
 
 			<div class="form-group row">
-				<label for="imagen" class="col-md-4 col-lg-3 col-form-label">Imagen</label>
+				<label for="imagen" class="col-md-4 col-lg-3 col-form-label">Imagen:</label>
 				<div class="col">
 					<div class="custom-file">
 						<input type="file" class="custom-file-input" id="imagen"
 							name="imagen" lang="es"> <label class="custom-file-label"
 							for="imagen" data-browse="Elegir">${producto.urlImagen != null ? producto.urlImagen : 'Selecionar Archivos'}</label>
+					<button class="btn btn-danger" type="button" onclick="$('.custom-file [for=imagen]').text('');$('[name=imagenAnterior]').val('')">Borrar imagen</button>
 					</div>
 					<div class="valid-feedback">Imagen correcta</div>
 					<div class="invalid-feedback"></div>
@@ -88,7 +89,7 @@
 	--%>
 
 			<div class="form-group row">
-				<label for="descripcion" class="col-md-4 col-lg-3 col-form-label">Descripción</label>
+				<label for="descripcion" class="col-md-4 col-lg-3 col-form-label">Descripción:</label>
 				<div class="col">
 					<textarea class="form-control" id="descripcion" name="descripcion"
 						placeholder="Descripción del producto">${producto.descripcion}</textarea>
@@ -98,7 +99,7 @@
 			</div>
 
 			<div class="form-group row">
-				<label for="precio" class="col-md-4 col-lg-3 col-form-label">Precio</label>
+				<label for="precio" class="col-md-4 col-lg-3 col-form-label">Precio:</label>
 				<div class="input-group col">
 					<input type="number" step=".01" min="0"
 						class="form-control ${producto.errorPrecio != null ? 'is-invalid' : '' }"
@@ -114,7 +115,7 @@
 			</div>
 
 			<div class="form-group row">
-				<label for="cantidad" class="col-md-4 col-lg-3 col-form-label">Cantidad</label>
+				<label for="cantidad" class="col-md-4 col-lg-3 col-form-label">Cantidad:</label>
 				<div class="col">
 					<input type="number"
 						class="form-control ${producto.errorCantidad != null ? 'is-invalid' : '' }"
@@ -127,7 +128,7 @@
 
 			<div class="form-group row">
 				<label for="unidad-medida" class="col-md-4 col-lg-3 col-form-label">Unidad
-					de medida</label>
+					de medida:</label>
 				<div class="col">
 					<input type="text" class="form-control" id="unidad-medida"
 						name="unidad-medida" value="${producto.unidadMedida}" />
@@ -138,8 +139,8 @@
 
 			<div class="form-group row">
 				<label for="precio-unidad-medida"
-					class="col-md-4 col-lg-3 col-form-label">Precio por unidad
-					de medida</label>
+					class="col-md-4 col-lg-3 col-form-label">Precio unidad
+					 medida:</label>
 				<div class="input-group col">
 					<input type="number" step=".01" min="0"
 						class="form-control ${producto.errorPrecioUnidadMedida != null ? 'is-invalid' : ''}"
@@ -157,7 +158,7 @@
 			</div>
 
 			<div class="form-group row">
-				<label for="descuento" class="col-md-4 col-lg-3 col-form-label">Descuento</label>
+				<label for="descuento" class="col-md-4 col-lg-3 col-form-label">Descuento:</label>
 				<div class="input-group col">
 					<input type="number"
 						class="form-control ${producto.errorDescuento != null ? 'is-invalid' : '' }"
