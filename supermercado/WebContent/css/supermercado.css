@@ -38,9 +38,18 @@ del:before {
 	margin: 50px;
 	background-color: #045169;
 	color: white;
+	
+}
+
+.col-form-label{
+	
 	text-align: center;
 }
 
+.contenedor-producto h1 {
+	text-align:center;
+	
+}
 .contenedor-carrito {
 	background-color: #097ca0;
 	color: white;
@@ -59,3 +68,4 @@ del:before {
 	padding: 17px;
 	margin: 14px;
 }
+
