@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.ipartek.formacion.supermercado.accesodatos.Dao;
 import com.ipartek.formacion.supermercado.accesodatos.ProductoDaoMySql;
+import com.ipartek.formacion.supermercado.controladores.Configuracion;
 import com.ipartek.formacion.supermercado.modelos.Producto;
 
 /**
@@ -24,14 +25,14 @@ public class ProductoBorrarServlet extends HttpServlet {
 	
         String id = request.getParameter("id");
 		
-		Dao<Producto> dao = ProductoDaoMySql.getInstancia();
+		Dao<Producto> dao = Configuracion.daoProductos;
 		
 		dao.eliminar(Long.parseLong(id));
 		
 		request.setAttribute("alertaTexto", "Borrado efectuado correctamente");
 		request.setAttribute("alertaNivel", "success");
 		
-		request.getRequestDispatcher("/admin/index").forward(request, response);
+		request.getRequestDispatcher("/admin/lista-Producto").forward(request, response);
 		
 	}
 

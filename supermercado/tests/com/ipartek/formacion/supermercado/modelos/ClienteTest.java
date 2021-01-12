@@ -39,6 +39,7 @@ class ClienteTest {
 
 	@Test
 	void testConstructorClienteString() {
+		
 		cliente = new Cliente("-5", "alskdfjlks", "kalsjdflds", "alskdjfl", "alkdjsafls");
 
 		assertFalse(cliente.isCorrecto());

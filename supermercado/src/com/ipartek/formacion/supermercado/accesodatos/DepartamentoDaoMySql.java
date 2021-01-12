@@ -11,6 +11,9 @@ import com.ipartek.formacion.supermercado.modelos.Departamento;
 
 public class DepartamentoDaoMySql implements Dao<Departamento> {
 
+	
+	// creamos unas constantes para la coneccion con la base
+	
 	private static final String URL = "jdbc:mysql://localhost:3306/supermercado?serverTimezone=UTC";
 	private static final String USER = "root";
 	private static final String PASS = "";
@@ -19,11 +22,15 @@ public class DepartamentoDaoMySql implements Dao<Departamento> {
 	
 	private DepartamentoDaoMySql() {}
 	
+	
+	//sigleton
 	private final static DepartamentoDaoMySql INSTANCIA = new DepartamentoDaoMySql();
 	
 	public static DepartamentoDaoMySql getInstancia() {
 		return INSTANCIA;
 	}
+	
+	//fin sigleton
 	
 	static {
 		try {

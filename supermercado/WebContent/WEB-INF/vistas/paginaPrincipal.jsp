@@ -68,4 +68,12 @@
 	</div>
 </form>
 
+<!-- boton subir arriba -->
+<nav aria-label="...">
+  <ul class="pagination pagination-lg justify-content-end">
+ 
+    <li class="page-item"><a class="page-link" href="pagina-principal">Subir</a></li>
+    
+  </ul>
+</nav>
 <%@ include file="/WEB-INF/vistas/includes/pie.jsp"%>

@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+import com.ipartek.formacion.supermercado.modelos.Departamento;
 import com.ipartek.formacion.supermercado.modelos.Producto;
 
 
@@ -17,11 +18,14 @@ public class ProductoDaoMySql implements Dao<Producto> {
 	private static final String USER = "root";
 	private static final String PASS = "";
 
-	private static final String SQL_SELECT = "SELECT * FROM productos";
-	private static final String SQL_SELECT_ID = "SELECT * FROM productos WHERE id = ?";
+	private static final String SQL_SELECT = "SELECT * FROM supermercado.productos p join supermercado.departamentos d ON p.departamentos_id = d.id;";
+	private static final String SQL_SELECT_ID = "SELECT * FROM productos p JOIN departamentos d ON p.departamentos_id = d.id WHERE p.id = ?";
 
-	private static final String SQL_INSERT = "INSERT INTO productos (nombre, descripcion, url_imagen, precio, descuento, unidad_medida, precio_unidad_medida, cantidad) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
-	private static final String SQL_UPDATE = "UPDATE productos SET nombre = ?, descripcion = ?, url_imagen = ?, precio = ?, descuento = ?, unidad_medida = ?, precio_unidad_medida = ?, cantidad = ? WHERE id = ?";
+	private static final String SQL_INSERT = "INSERT INTO productos "
+			+ "(nombre, descripcion, url_imagen, precio, descuento, unidad_medida, precio_unidad_medida, cantidad, departamentos_id) VALUES "
+			+ "(?, ?, ?, ?, ?, ?, ?, ?, ?)";
+	
+	private static final String SQL_UPDATE = "UPDATE productos SET nombre = ?, descripcion = ?, url_imagen = ?, precio = ?, descuento = ?, unidad_medida = ?, precio_unidad_medida = ?, cantidad = ?, departamentos_id = ? WHERE id = ?";
 	private static final String SQL_DELETE = "DELETE FROM productos WHERE id = ?";
 
 	static {
@@ -40,11 +44,9 @@ public class ProductoDaoMySql implements Dao<Producto> {
 	// Con esto evitamos la posibilidad de que nadie haga new de esta clase (salvo
 	// esta clase en s� misma)
 
-	private ProductoDaoMySql() {
+	private ProductoDaoMySql() {}
 
-	}
-
-	private static ProductoDaoMySql INSTANCIA = new ProductoDaoMySql();
+	public static ProductoDaoMySql INSTANCIA = new ProductoDaoMySql();
 
 	// Creamos un m�todo p�blico que de acceso a la �nica instancia disponible
 	// Desde otras clases deberemos hacer
@@ -67,11 +69,14 @@ public class ProductoDaoMySql implements Dao<Producto> {
 
 			ArrayList<Producto> productos = new ArrayList<>();
 
-			// Producto producto;
+			
+			
 
 			while (rs.next()) {
 
 				productos.add(mapper(rs));
+				
+				
 
 			} // while
 
@@ -84,10 +89,18 @@ public class ProductoDaoMySql implements Dao<Producto> {
 	}
 
 	private Producto mapper(ResultSet rs) throws SQLException {
+		
+		
 
-		Producto producto = new Producto(rs.getLong("id"), rs.getString("nombre"), rs.getString("descripcion"),
-				rs.getString("url_imagen"), rs.getBigDecimal("precio"), rs.getInt("descuento"),
-				rs.getString("unidad_medida"), rs.getBigDecimal("precio_unidad_medida"), rs.getInt("cantidad"),rs.getBigDecimal("total"));
+		Producto producto = new Producto(rs.getLong("p.id"), rs.getString("p.nombre"), rs.getString("p.descripcion"),
+				rs.getString("p.url_imagen"), rs.getBigDecimal("p.precio"), rs.getInt("p.descuento"),
+				rs.getString("p.unidad_medida"), rs.getBigDecimal("p.precio_unidad_medida"), rs.getInt("p.cantidad"),rs.getBigDecimal("p.total"));
+		
+		 Departamento departamento;
+		 
+         departamento = new Departamento(rs.getLong("d.id"), rs.getString("d.nombre"), rs.getString("d.descripcion"));
+         
+         producto.setDepartamento(departamento);
 
 		return producto;
 	}
@@ -101,6 +114,7 @@ public class ProductoDaoMySql implements Dao<Producto> {
 
 			try (ResultSet rs = ps.executeQuery()) {
 				Producto producto = null;
+				Departamento departamento;
 
 				if (rs.next()) {
 
@@ -108,6 +122,11 @@ public class ProductoDaoMySql implements Dao<Producto> {
 							rs.getString("url_imagen"), rs.getBigDecimal("precio"), rs.getInt("descuento"),
 							rs.getString("unidad_medida"), rs.getBigDecimal("precio_unidad_medida"),
 							rs.getInt("cantidad"),rs.getBigDecimal("total"));
+				
+					departamento = new Departamento(rs.getLong("d.id"), rs.getString("d.nombre"), rs.getString("d.descripcion"));
+
+					producto.setDepartamento(departamento);
+				
 				}
 
 				return producto;
@@ -133,6 +152,7 @@ public class ProductoDaoMySql implements Dao<Producto> {
 			ps.setString(6, producto.getUnidadMedida());
 			ps.setBigDecimal(7, producto.getPrecioUnidadMedida());
 			ps.setInt(8, producto.getCantidad());
+			ps.setLong(9, producto.getDepartamento().getId());
 
 			int numeroRegistrosInsertados = ps.executeUpdate();
 
@@ -159,7 +179,8 @@ public class ProductoDaoMySql implements Dao<Producto> {
 			ps.setString(6, producto.getUnidadMedida());
 			ps.setBigDecimal(7, producto.getPrecioUnidadMedida());
 			ps.setInt(8, producto.getCantidad());
-			ps.setLong(9, producto.getId());
+			ps.setLong(9, producto.getDepartamento().getId());
+			ps.setLong(10, producto.getId());
 
 
 			int numeroRegistrosModificados = ps.executeUpdate();
