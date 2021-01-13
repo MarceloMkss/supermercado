@@ -17,6 +17,10 @@ public interface Dao<P> { // P = tipo de dato
 	default void crear(P objeto) {
 		throw new AccesoDatosException("MÉTODO NO IMPLEMENTADO");
 	}
+	
+	default P crearYObtener(P objeto){
+		throw new AccesoDatosException("MÉTODO NO IMPLEMENTADO");
+	}
 
 	default void modificar(P objeto) {
 		throw new AccesoDatosException("MÉTODO NO IMPLEMENTADO");
